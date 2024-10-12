@@ -258,6 +258,9 @@ NewTestRunner >> resultDescription [
 
 { #category : 'API' }
 NewTestRunner >> run: aRunnable [
+	"Run a runnable and return a result. 
+	A runnable can be a collection of classes, packages, testcases, testsuites.
+	(any object that knows runBy:)."
 
 	aRunnable runBy: self.
 	^ self result

@@ -15,8 +15,9 @@ Class {
 		'suitePreparationModesPresenter',
 		'suitePreparationMode'
 	],
-	#category : 'TestRunner-UI',
-	#package : 'TestRunner-UI'
+	#category : 'TestRunner-UI-Core',
+	#package : 'TestRunner-UI',
+	#tag : 'Core'
 }
 
 { #category : 'instance creation' }
@@ -31,7 +32,7 @@ TestRunnerAbstractPresenter >> allDefinedTestCases: aCollectionOfPackage [
 
 	"return all the defined test cases from the giving pavkage"
 
-	^ aCollectionOfPackage collectAll: [ :package | 
+	^ aCollectionOfPackage flatCollect: [ :package | 
 		  self definedTestCases: package ]
 ]
 
@@ -196,14 +197,14 @@ TestRunnerAbstractPresenter >> initializeClassesPresenter [
 
 	classesPresenter := self instantiate: SpFilteringListPresenter.
 	classesPresenter listPresenter beMultipleSelection.
-	classesPresenter listPresenter sortingBlock: [ :a :b | 
+	classesPresenter listPresenter sortingBlock: [ :a :b |
 		a name < b name ].
 	classesPresenter
-		display: [ :class | 
-			class name , ' (' , class testSelectors size asString, ')' ];
-		displayIcon: [ :class | class systemIcon ];
-		whenSelectionChangedDo: [ :selectionItemMode | 
-			selectionItemMode isEmpty ifFalse: [ 
+		display: [ :class |
+			class name , ' (' , class testSelectors size asString , ')' ];
+		displayIcon: [ :class | class iconNamed: class systemIconName ];
+		whenSelectionChangedDo: [ :selectionItemMode |
+			selectionItemMode isEmpty ifFalse: [
 					self selectedClasses: selectionItemMode selectedItems ] ]
 ]
 

@@ -4,8 +4,9 @@ Class {
 	#instVars : [
 		'testRunnerUI'
 	],
-	#category : 'TestRunner-UI-Tests',
-	#package : 'TestRunner-UI-Tests'
+	#category : 'TestRunner-UI-Tests-Core',
+	#package : 'TestRunner-UI-Tests',
+	#tag : 'Core'
 }
 
 { #category : 'running' }

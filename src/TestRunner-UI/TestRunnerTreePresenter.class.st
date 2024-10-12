@@ -4,8 +4,9 @@ I am a mini UI TestRunner and i present the result as a Tree.
 Class {
 	#name : 'TestRunnerTreePresenter',
 	#superclass : 'TestRunnerAbstractPresenter',
-	#category : 'TestRunner-UI',
-	#package : 'TestRunner-UI'
+	#category : 'TestRunner-UI-Core',
+	#package : 'TestRunner-UI',
+	#tag : 'Core'
 }
 
 { #category : 'instance creation' }
