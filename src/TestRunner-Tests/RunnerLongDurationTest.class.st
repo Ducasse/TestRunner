@@ -19,7 +19,6 @@ RunnerLongDurationTest >> setUp [
 
 { #category : 'tests' }
 RunnerLongDurationTest >> testRunningFromACollectionOfPackages [
-
 	"first execution"
 
 	| packages |
@@ -33,7 +32,6 @@ RunnerLongDurationTest >> testRunningFromACollectionOfPackages [
 
 { #category : 'tests' }
 RunnerLongDurationTest >> testRunningFromAPackage [
-
 	"first execution"
 
 	| aPackage |

@@ -9,7 +9,7 @@ Class {
 	#tag : 'Core'
 }
 
-{ #category : 'tests' }
+{ #category : 'running' }
 NewTestRunnerTest >> classForRunner [
 
 	^ NewTestRunner
@@ -36,6 +36,26 @@ NewTestRunnerTest >> testFailedTestFaildWhileRerunningDoesNotChangeTheResult [
 	[ 
 	YellowTest doNotIgnoreTest.
 	runner runClass: YellowTest.
+	self
+		assert: runner testsCount equals: 2;
+		assert: runner failureCount equals: 1.
+
+	"second execution"
+	runner runFailures.
+	self
+		assert: runner testsCount equals: 2;
+		assert: runner failureCount equals: 1 ] ensure: [ 
+		YellowTest ignoreTest ]
+]
+
+{ #category : 'tests' }
+NewTestRunnerTest >> testFailedTestFaildWhileRerunningDoesNotChangeTheResult2 [
+
+	"first execution"
+
+	[ 
+	YellowTest doNotIgnoreTest.
+	runner run: YellowTest.
 	self
 		assert: runner testsCount equals: 2;
 		assert: runner failureCount equals: 1.
@@ -179,16 +199,20 @@ NewTestRunnerTest >> testRunnerDoesNotAccumulateRsult [
 { #category : 'tests' }
 NewTestRunnerTest >> testRunningACollectionOfTestCases [
 
-	"first execution"
-
 	[ 
 	YellowTest doNotIgnoreTest.
+	"self deny: YellowTest ignoredStatus. 
+	GreenTest ignoredStatus."
 	runner runClasses: { 
 			GreenTest.
 			YellowTest }.
 	self assert: runner runCount equals: 4.
-	self assert: runner passedCount equals: 3 ] ensure: [ 
-		YellowTest ignoreTest ]
+	self assert: runner passedCount equals: 3.
+	self assert: runner failureCount equals: 1.
+	1 halt.
+	 ] 
+		ensure: [ YellowTest ignoreTest ].
+	
 ]
 
 { #category : 'tests' }

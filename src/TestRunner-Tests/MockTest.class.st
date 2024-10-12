@@ -24,6 +24,12 @@ MockTest class >> ignoreTest [
 	ignore := true
 ]
 
+{ #category : 'accessing' }
+MockTest class >> ignoredStatus [
+
+	^ ignore
+]
+
 { #category : 'class initialization' }
 MockTest class >> initialize [
 

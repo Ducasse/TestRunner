@@ -13,14 +13,22 @@ You can simply use my method `(NewTestRunner class run: aRunnable)` to run all t
 NewTestRunner run: GreenTest
 ```
 
-# Public API
-## Running
+### About result merging (accumulation)
+
+When running a single class or package you can decide to get their results in isolation. 
+Else for classes, packages, suite or testcase their results are accumulated.
+
+
+
+
+### Public API
+#### Running
 - run:
 - runFailures
 - runErrors
 - result
 
-## Change behaviour
+#### Change behaviour
 - switchToDebugMode
 - switchToRunMode
 - accumulateResult
@@ -72,7 +80,6 @@ NewTestRunner class >> run: aRunnable [
 
 { #category : 'running' }
 NewTestRunner class >> runCase: aTestCase [
-
 	"return the result of the execution of the giving testCase"
 
 	^ self new
@@ -115,7 +122,7 @@ NewTestRunner class >> runSuite: aTestSuite [
 
 { #category : 'API' }
 NewTestRunner >> accumulateResult [
-	"activate the results accumulation behavior"
+	"Activate the results accumulation behavior. It means that all the results are merged into the result held by the receiver."
 
 	self shouldAccumulate: true
 ]
@@ -148,19 +155,19 @@ NewTestRunner >> addToSuite: aTestSuite [
 	suite := self suite , aTestSuite
 ]
 
-{ #category : 'private' }
+{ #category : 'hooks' }
 NewTestRunner >> classForExecutionMode [
 
 	^ AbstractExecutionMode
 ]
 
-{ #category : 'private' }
+{ #category : 'hooks' }
 NewTestRunner >> classForSuitePreparator [
 
 	^ AbstractSuitePreparator
 ]
 
-{ #category : 'private' }
+{ #category : 'hooks' }
 NewTestRunner >> classForTestResult [
 
 	^ TestResult
@@ -175,7 +182,7 @@ NewTestRunner >> debugFailure: failure [
 
 { #category : 'API' }
 NewTestRunner >> doNotAccumulateResult [
-	"disable the results accumulation behavior"
+	"Disable the results accumulation behavior"
 
 	self shouldAccumulate: false
 ]
@@ -246,7 +253,7 @@ NewTestRunner >> resetSuite [
 { #category : 'accessing' }
 NewTestRunner >> result [
 
-	^ result ifNil: [ result := self classForTestResult new]
+	^ result ifNil: [ result := self classForTestResult new ]
 ]
 
 { #category : 'accessing' }
@@ -270,9 +277,9 @@ NewTestRunner >> run: aRunnable [
 NewTestRunner >> runAll [
 	"run the current collected suite"
 
-	[ 
-	self setUp.
-	self runSuite ] ensure: [ self tearDown ]
+	[ self setUp.
+	self runSuite ] 
+		ensure: [ self tearDown ]
 ]
 
 { #category : 'running' }
