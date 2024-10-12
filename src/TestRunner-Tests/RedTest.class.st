@@ -10,7 +10,7 @@ Class {
 }
 
 { #category : 'tests' }
-RedTest >> testFail [
+RedTest >> testMayFail [
 
 	self shouldBeIgnored ifTrue: [ ^ self ].
 	self assert: false

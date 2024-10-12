@@ -7,14 +7,14 @@ Class {
 }
 
 { #category : 'tests' }
-GreenTest >> testPass [
+GreenTest >> testPassAgain [
 
 	self skipOnPharoCITestingEnvironment.
 	self assert: true
 ]
 
 { #category : 'tests' }
-GreenTest >> testPassAgain [
+GreenTest >> testPassButSkippedOnPharoCI [
 
 	self skipOnPharoCITestingEnvironment.
 	self assert: true

@@ -13,27 +13,22 @@ Class {
 }
 
 { #category : 'accessing' }
-MockTest class >> doNotIgnoreTest [
+MockTest class >> ignoreMayFailTests [
 
 	ignore := false
 ]
 
-{ #category : 'accessing' }
-MockTest class >> ignoreTest [
-
-	ignore := true
-]
-
-{ #category : 'accessing' }
-MockTest class >> ignoredStatus [
-
-	^ ignore
-]
-
 { #category : 'class initialization' }
 MockTest class >> initialize [
+	<script>
+	
+	self ignoreMayFailTests 
+]
 
-	self ignoreTest
+{ #category : 'accessing' }
+MockTest class >> makeMayFailTestsFail [
+
+	ignore := false
 ]
 
 { #category : 'accessing' }
@@ -43,15 +38,15 @@ MockTest class >> shouldBeIgnored [
 ]
 
 { #category : 'asserting' }
-MockTest >> doNotIgnoreTest [
+MockTest >> ignoreMayFailTests [ 
 
-	self class doNotIgnoreTest
+	self class ignoreMayFailTests
 ]
 
 { #category : 'asserting' }
-MockTest >> ignoreTest [
+MockTest >> makeMayFailTestsFail [
 
-	self class ignoreTest
+	self class makeMayFailTestsFail
 ]
 
 { #category : 'asserting' }

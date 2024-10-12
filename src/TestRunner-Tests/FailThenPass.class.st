@@ -30,14 +30,14 @@ FailThenPass class >> reset [
 ]
 
 { #category : 'tests' }
-FailThenPass >> testFailAtFirstRunning [
+FailThenPass >> testMayFailAtFirstRunning [
 
 	self shouldBeIgnored ifTrue: [ ^ self ].
 	self assert: self class counter equals: 1
 ]
 
 { #category : 'tests' }
-FailThenPass >> testPass [
+FailThenPass >> testMayPass [
 
 	self shouldBeIgnored ifTrue: [ ^ self ].
 	self assert: true
